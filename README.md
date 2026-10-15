@@ -1,4 +1,4 @@
-# OpenRoSDE Device: OnRobot
+# OpenRoSDE OnRobot Device
 
 `openrosde-device-onrobot` is the device extension of [OpenRoSDE](https://gitlab.com/coarobo/SDE) for the OnRobot RG grippers, which packages the [`onrobot`](https://github.com/UOsaka-Harada-Laboratory/onrobot) driver of the Harada Laboratory of Osaka University, with the description of the OnRobot Quick Changer, a `control_msgs/GripperCommand` action, and the joint states of the fingers.
 It names no robot, so any platform or setup of OpenRoSDE that carries an OnRobot gripper activates it.
