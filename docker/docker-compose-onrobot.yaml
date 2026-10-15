@@ -1,0 +1,15 @@
+# version: "3.9"
+
+################################################################################
+
+# OnRobot device overlay for OpenRoSDE.
+# Passes the OnRobot environment variables to the container.
+
+################################################################################
+
+services:
+  openrosde:
+    environment:
+      # IP address of the OnRobot Compute Box (gripper controller), set in '.env.custom' or in the template of the setup.
+      # Passed on from the environment of the entry scripts without interpolation, so the variable stays unset in the container when the setup does not set it, and 'onrobot_rg_control_default_realworld.launch' then uses the factory address of the Compute Box.
+      - OPENROSDE_ONROBOT_COMPUTE_BOX_IP
