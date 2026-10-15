@@ -100,6 +100,16 @@ roslaunch openrosde_onrobot_launch onrobot_rg_joint_states.launch
 It turns the width of `/OnRobotRGInput` into the angles of the six finger joints on `/joint_states`, and publishes zero positions for the joints that no other node publishes while no status arrives.
 Pass `prefix:=<prefix>` when the gripper macro got a prefix, and `gripper:=rg6` for an OnRobot RG6.
 
+## 🕹️ Joystick Button
+
+To toggle the gripper between open and closed with a button of any `sensor_msgs/Joy` device, such as Button 1 of a 3Dconnexion SpaceMouse:
+
+```shell
+roslaunch openrosde_onrobot_launch onrobot_rg_joy_button.launch joy_topic:=/spacenav/joy
+```
+
+`joy_topic` defaults to `/joy`, and `gripper_button_index` to `1`, so the device depends on no input device, and the setup names the topic of its own.
+
 ## 🔌 Quick Changer Description
 
 `openrosde_onrobot_description` defines the macro `onrobot_qc_r_v3` of the robot side of the OnRobot Quick Changer (QC-R v3), with the links `qc_robot_mount`, `qc_body`, and `qc_tool_mount`, where the gripper mounts 13.6 mm above the robot side:
@@ -133,5 +143,6 @@ The launch files of the device are in the package `openrosde_onrobot_launch`:
 | `onrobot_rg_control_default_gazebo.launch` | OnRobot RG2 or RG6 in Gazebo, behind the same service |
 | `onrobot_rg_gripper_action.launch` | `control_msgs/GripperCommand` action over the service of the gripper |
 | `onrobot_rg_joint_states.launch` | Joint states of the fingers from the status of the gripper |
+| `onrobot_rg_joy_button.launch` | Button of a `sensor_msgs/Joy` device that toggles the gripper |
 
 A device ships no `tmux` panes, so the setup that activates it starts these launch files from its own panes.

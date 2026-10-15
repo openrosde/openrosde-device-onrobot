@@ -30,7 +30,7 @@
   <!-- Serve the command service of the real gripper and turn each command into a joint position. -->
   <node pkg="openrosde_onrobot_launch"
     type="onrobot_rg_command_bridge.py"
-    name="onrobot_rg_command_bridge"
+    name="onrobot_rg_gazebo_bridge"
     output="screen">
     <param name="enable_joy_control" value="false" />
     <param name="enable_service_bridge" value="true" />

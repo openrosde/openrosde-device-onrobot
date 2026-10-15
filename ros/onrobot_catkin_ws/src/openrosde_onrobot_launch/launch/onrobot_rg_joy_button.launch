@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<launch>
+
+  <!-- https://github.com/UOsaka-Harada-Laboratory/onrobot -->
+  <!-- OpenRoSDE-specific: toggles an OnRobot RG gripper between open and closed with a button of any 'sensor_msgs/Joy' device, through the 'SetCommand' service of 'onrobot_rg_control'. -->
+
+  <!-- Topic of the 'sensor_msgs/Joy' device, such as '/spacenav/joy' for a 3Dconnexion SpaceMouse. -->
+  <arg name="joy_topic" default="/joy" />
+  <arg name="gripper_button_index" default="1" />
+  <!-- Service of the real gripper, from 'onrobot_rg_control_default_realworld.launch', or of the simulated one, from 'onrobot_rg_control_default_gazebo.launch'. -->
+  <arg name="gripper_service_name" default="/onrobot_rg/set_command" />
+  <arg name="gripper_open_command" default="o" />
+  <arg name="gripper_close_command" default="c" />
+  <arg name="gripper_initial_state" default="open" />
+
+  <node pkg="openrosde_onrobot_launch"
+    type="onrobot_rg_command_bridge.py"
+    name="onrobot_rg_joy_button"
+    output="screen">
+    <param name="enable_joy_control" value="true" />
+    <param name="enable_service_bridge" value="false" />
+    <param name="joy_topic" value="$(arg joy_topic)" />
+    <param name="gripper_button_index" value="$(arg gripper_button_index)" />
+    <param name="gripper_service_name" value="$(arg gripper_service_name)" />
+    <param name="gripper_open_command" value="$(arg gripper_open_command)" />
+    <param name="gripper_close_command" value="$(arg gripper_close_command)" />
+    <param name="gripper_initial_state" value="$(arg gripper_initial_state)" />
+  </node>
+
+</launch>
