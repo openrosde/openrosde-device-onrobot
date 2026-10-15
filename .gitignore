@@ -1,0 +1,11 @@
+# Files that 'catkin build' and 'catkin_init_workspace' create in the Catkin workspaces.
+**/ros/*_catkin_ws/CMakeLists.txt
+**/ros/*_catkin_ws/.catkin_tools/
+**/ros/*_catkin_ws/build/
+**/ros/*_catkin_ws/devel/
+**/ros/*_catkin_ws/logs/
+**/ros/*_catkin_ws/src/CMakeLists.txt
+
+# Python bytecode.
+__pycache__/
+*.pyc

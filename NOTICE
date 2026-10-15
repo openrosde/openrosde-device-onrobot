@@ -1,0 +1,49 @@
+OpenRoSDE Device: OnRobot
+Copyright 2019 Coarobo GK
+
+This product is licensed under the Apache License, Version 2.0, which LICENSE holds.
+
+Earlier Versions in the SDE
+---------------------------
+
+The files of this repository that come from the SDE, the predecessor of OpenRoSDE at https://gitlab.com/coarobo/SDE, were first published there under the MIT License, whose notice follows:
+
+  MIT License
+
+  Copyright (c) 2019 Coarobo GK
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+
+The versions published there remain available under the MIT License.
+
+Third-Party Components
+----------------------
+
+onrobot
+  Git submodule at 'ros/onrobot_catkin_ws/src/onrobot', cloned from https://github.com/UOsaka-Harada-Laboratory/onrobot rather than held in this repository.
+  License: MIT License, Copyright (c) 2022 Takuya Kiyokawa, with the permission notice above.
+  'patches/ros/onrobot_catkin_ws/src/onrobot/0001-fix-duplicate-world.patch' carries lines of its 'onrobot_rg_description/urdf/onrobot_rg2.xacro'.
+
+roboticsgroup_upatras_gazebo_plugins
+  Git submodule at 'ros/onrobot_catkin_ws/src/roboticsgroup_upatras_gazebo_plugins', cloned from https://github.com/roboticsgroup/roboticsgroup_upatras_gazebo_plugins rather than held in this repository.
+  License: BSD 3-Clause License, Copyright 2014 Konstantinos Chatzilygeroudis.
+
+ros_control, ros_controllers, and pymodbus
+  Installed by 'docker/onrobot-devel/Dockerfile' from the ROS repositories and from PyPI, never held in this repository.
+  License: BSD 3-Clause License, each with its own copyright holders.
