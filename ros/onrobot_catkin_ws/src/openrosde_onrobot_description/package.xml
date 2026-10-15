@@ -1,0 +1,18 @@
+<package format="2">
+  <name>openrosde_onrobot_description</name>
+  <version>1.0.0</version>
+  <description>
+    The 'openrosde_onrobot_description' package describes the OnRobot equipment that mounts an OnRobot gripper on a robot, starting with the OnRobot Quick Changer (QC-R v3), for OpenRoSDE.
+  </description>
+  <maintainer email="lotfi@coarobo.com">Lotfi El Hafi</maintainer>
+  <author email="lotfi@coarobo.com">Lotfi El Hafi</author>
+
+  <license>Apache-2.0</license>
+
+  <url type="repository">https://gitlab.com/coarobo/openrosde/openrosde-device-onrobot</url>
+  <url type="bugtracker">https://gitlab.com/coarobo/openrosde/openrosde-device-onrobot/-/issues</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <exec_depend>xacro</exec_depend>
+</package>

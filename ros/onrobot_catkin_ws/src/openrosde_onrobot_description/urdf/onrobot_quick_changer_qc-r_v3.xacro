@@ -1,28 +1,43 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-<xacro:macro name="onrobot_qc_r_v3" params="parent *origin">
+<!-- OnRobot Quick Changer, robot side (QC-R v3), mounted on 'parent' at 'origin'. -->
+<!-- 'prefix' starts the name of every link, joint, and material, so the default 'qc_' gives 'qc_robot_mount', 'qc_body', and 'qc_tool_mount'. -->
+<!-- The body is drawn as a cylinder of the size of the quick changer, 71 mm across and 13.6 mm thick, centered on 'qc_body' as the meshes of the quick changer are. -->
+<!-- 'visual_mesh' and 'collision_mesh' replace that cylinder with meshes, given as URIs such as 'package://<package>/meshes/onrobot_quick_changer_qc-r_v3.stl'. -->
+<!-- The tool side, where a gripper mounts, sits on 'qc_tool_mount', 13.6 mm above 'qc_robot_mount'. -->
+<xacro:macro name="onrobot_qc_r_v3" params="parent *origin prefix:=qc_ visual_mesh:='' collision_mesh:=''">
 
-  <link name="qc_robot_mount"/>
+  <link name="${prefix}robot_mount"/>
 
-  <joint name="qc_robot_mount_joint" type="fixed">
+  <joint name="${prefix}robot_mount_joint" type="fixed">
     <xacro:insert_block name="origin" />
     <parent link="${parent}"/>
-    <child link="qc_robot_mount"/>
+    <child link="${prefix}robot_mount"/>
   </joint>
 
-  <link name="qc_body">
+  <link name="${prefix}body">
     <visual>
       <geometry>
-        <mesh filename="package://openrosde_ur5e_launch/description/onrobot_quick_changer_qc-r_v3/meshes/visual/onrobot_quick_changer_qc-r_v3.stl"/>
+        <xacro:if value="${visual_mesh != ''}">
+          <mesh filename="${visual_mesh}"/>
+        </xacro:if>
+        <xacro:unless value="${visual_mesh != ''}">
+          <cylinder radius="0.0355" length="0.0136"/>
+        </xacro:unless>
       </geometry>
-      <material name="qc_blue">
+      <material name="${prefix}blue">
         <color rgba="0 0.35 0.8 1"/>
       </material>
     </visual>
     <collision>
       <geometry>
-        <mesh filename="package://openrosde_ur5e_launch/description/onrobot_quick_changer_qc-r_v3/meshes/collision/onrobot_quick_changer_qc-r_v3.stl"/>
+        <xacro:if value="${collision_mesh != ''}">
+          <mesh filename="${collision_mesh}"/>
+        </xacro:if>
+        <xacro:unless value="${collision_mesh != ''}">
+          <cylinder radius="0.0355" length="0.0136"/>
+        </xacro:unless>
       </geometry>
     </collision>
     <inertial>
@@ -32,22 +47,22 @@
     </inertial>
   </link>
 
-  <joint name="qc_robot_joint" type="fixed">
-    <parent link="qc_robot_mount"/>
-    <child link="qc_body"/>
+  <joint name="${prefix}robot_joint" type="fixed">
+    <parent link="${prefix}robot_mount"/>
+    <child link="${prefix}body"/>
     <origin xyz="0 0 0"/>
   </joint>
 
-  <link name="qc_tool_mount"/>
+  <link name="${prefix}tool_mount"/>
 
-  <joint name="qc_tool_joint" type="fixed">
-    <parent link="qc_body"/>
-    <child link="qc_tool_mount"/>
+  <joint name="${prefix}tool_joint" type="fixed">
+    <parent link="${prefix}body"/>
+    <child link="${prefix}tool_mount"/>
     <origin xyz="0 0 0.0136"/>
   </joint>
 
   <!-- Gazebo -->
-  <gazebo reference="qc_body">
+  <gazebo reference="${prefix}body">
     <mu1>0.8</mu1>
     <mu2>0.8</mu2>
     <kp>1000000.0</kp>

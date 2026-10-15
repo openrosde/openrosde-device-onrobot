@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="onrobot_quick_changer_qc-r_v3">
+
+<!-- OnRobot Quick Changer, robot side (QC-R v3), alone on a 'parent' link, to view it or to check it with 'check_urdf'. -->
+<!-- Usage: xacro onrobot_quick_changer_qc-r_v3_standalone.xacro [prefix:=qc_] [parent:=tool0] [visual_mesh:=<uri>] [collision_mesh:=<uri>] -->
+
+<xacro:arg name="prefix" default="qc_"/>
+<xacro:arg name="parent" default="tool0"/>
+<xacro:arg name="visual_mesh" default=""/>
+<xacro:arg name="collision_mesh" default=""/>
+
+<xacro:include filename="$(find openrosde_onrobot_description)/urdf/onrobot_quick_changer_qc-r_v3.xacro"/>
+
+<link name="$(arg parent)"/>
+
+<xacro:onrobot_qc_r_v3 parent="$(arg parent)" prefix="$(arg prefix)" visual_mesh="$(arg visual_mesh)" collision_mesh="$(arg collision_mesh)">
+  <origin xyz="0 0 0" rpy="0 0 0"/>
+</xacro:onrobot_qc_r_v3>
+
+</robot>
