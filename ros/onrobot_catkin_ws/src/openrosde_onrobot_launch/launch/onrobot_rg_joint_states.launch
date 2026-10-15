@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<launch>
+
+  <!-- https://github.com/UOsaka-Harada-Laboratory/onrobot -->
+  <!-- OpenRoSDE-specific: publishes the joint states of an OnRobot RG gripper from its status, or zero positions without it, so that 'robot_state_publisher' computes the TF of every gripper link. -->
+
+  <!-- Prefix of the joint names, as given to the gripper macro of 'onrobot_rg_description'. -->
+  <arg name="prefix" default="" />
+  <!-- Gripper model, 'rg2' or 'rg6', which sets the width range and the 'finger_joint' limits. -->
+  <arg name="gripper" default="rg2" />
+  <!-- Name of the node, which ignores the joint states it publishes itself by this name. -->
+  <arg name="node_name" default="onrobot_rg_joint_states" />
+
+  <node pkg="openrosde_onrobot_launch"
+    type="onrobot_rg_joint_states.py"
+    name="$(arg node_name)"
+    output="screen">
+    <param name="prefix" value="$(arg prefix)" />
+    <param name="gripper" value="$(arg gripper)" />
+  </node>
+
+</launch>

@@ -2,11 +2,13 @@
 
 <launch>
 
-  <!-- https://github.com/Osaka-University-Harada-Laboratory/onrobot -->
+  <!-- https://github.com/UOsaka-Harada-Laboratory/onrobot -->
   <!-- Upstream default: $(find onrobot_rg_control)/launch/bringup_server.launch -->
 
-  <arg name="ip" default="$(optenv OPENROSDE_ONROBOT_COMPUTE_BOX_IP)" />
+  <!-- IP address of the OnRobot Compute Box, from 'OPENROSDE_ONROBOT_COMPUTE_BOX_IP', or else its factory default address. -->
+  <arg name="ip" default="$(optenv OPENROSDE_ONROBOT_COMPUTE_BOX_IP 192.168.1.1)" />
   <arg name="port" default="502" />
+  <!-- Gripper model, 'rg2' or 'rg6'. -->
   <arg name="gripper" default="rg2" />
   <arg name="changer_addr" default="65" />
   <arg name="dummy" default="false" />

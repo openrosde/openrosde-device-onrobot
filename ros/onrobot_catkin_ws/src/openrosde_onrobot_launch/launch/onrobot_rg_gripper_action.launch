@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<launch>
+
+  <!-- https://github.com/UOsaka-Harada-Laboratory/onrobot -->
+  <!-- OpenRoSDE-specific: serves a 'control_msgs/GripperCommand' action for an OnRobot RG gripper over the 'SetCommand' service of 'onrobot_rg_control'. -->
+
+  <!-- Name of the action, whose 'goal', 'result', and 'status' topics the node uses. -->
+  <arg name="action_name" default="/gripper_controller/gripper_action" />
+  <!-- Service of the real gripper, from 'onrobot_rg_control_default_realworld.launch', or of the simulated one, from 'onrobot_rg_control_default_gazebo.launch'. -->
+  <arg name="gripper_service_name" default="/onrobot_rg/set_command" />
+  <arg name="gripper_open_command" default="o" />
+  <arg name="gripper_close_command" default="c" />
+  <!-- A commanded position at or above this threshold opens the gripper, below it closes. -->
+  <arg name="open_position_threshold" default="0.05" />
+
+  <node pkg="openrosde_onrobot_launch"
+    type="onrobot_rg_gripper_action.py"
+    name="onrobot_rg_gripper_action"
+    output="screen">
+    <param name="action_name" value="$(arg action_name)" />
+    <param name="gripper_service_name" value="$(arg gripper_service_name)" />
+    <param name="gripper_open_command" value="$(arg gripper_open_command)" />
+    <param name="gripper_close_command" value="$(arg gripper_close_command)" />
+    <param name="open_position_threshold" value="$(arg open_position_threshold)" />
+  </node>
+
+</launch>

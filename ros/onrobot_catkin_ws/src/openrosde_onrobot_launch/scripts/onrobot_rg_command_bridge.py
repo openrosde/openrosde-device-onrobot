@@ -1,17 +1,28 @@
 #!/usr/bin/env python3
 
+"""Bridge commands to an OnRobot RG gripper, in two modes, each switched on by its own parameter.
+
+In the joy mode (~enable_joy_control), a button of any sensor_msgs/Joy device, such as a
+3Dconnexion SpaceMouse on /spacenav/joy, toggles the gripper between open and closed through
+the SetCommand service of onrobot_rg_control (/onrobot_rg/set_command by default).
+
+In the service bridge mode (~enable_service_bridge), the node serves that SetCommand service
+itself and turns each command into a position of the joint position controller of a simulated
+gripper in Gazebo, so that a client drives the simulated gripper as it drives the real one.
+"""
+
 import rospy
 from onrobot_rg_control.srv import SetCommand, SetCommandResponse
 from sensor_msgs.msg import Joy
 from std_msgs.msg import Float64
 
 
-class Ur5eSpacenavNodeOnrobotRgControl(object):
+class OnrobotRgCommandBridge(object):
     def __init__(self):
         self.enable_joy_control = rospy.get_param("~enable_joy_control", True)
         self.enable_service_bridge = rospy.get_param("~enable_service_bridge", False)
 
-        self.joy_topic = rospy.get_param("~joy_topic", "/spacenav/joy")
+        self.joy_topic = rospy.get_param("~joy_topic", "/joy")
         self.gripper_button_index = rospy.get_param("~gripper_button_index", 1)
         self.gripper_service_name = rospy.get_param("~gripper_service_name", "/onrobot_rg/set_command")
         self.gripper_open_command = rospy.get_param("~gripper_open_command", "o")
@@ -139,8 +150,8 @@ class Ur5eSpacenavNodeOnrobotRgControl(object):
 
 
 def main():
-    rospy.init_node("ur5e_onrobot_rg_control_spacenav_node")
-    Ur5eSpacenavNodeOnrobotRgControl()
+    rospy.init_node("onrobot_rg_command_bridge")
+    OnrobotRgCommandBridge()
     rospy.spin()
 
 

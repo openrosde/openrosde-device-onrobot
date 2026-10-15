@@ -2,34 +2,39 @@
 
 <launch>
 
-  <!-- https://github.com/Osaka-University-Harada-Laboratory/onrobot -->
-  <!-- OpenRoSDE-specific: simulates the OnRobot RG2 in Gazebo via a 'joint_position_controller'. -->
+  <!-- https://github.com/UOsaka-Harada-Laboratory/onrobot -->
+  <!-- OpenRoSDE-specific: simulates an OnRobot RG2 or RG6 in Gazebo via a 'joint_position_controller', behind the same service as the real gripper. -->
+
+  <!-- Gripper model, 'rg2' or 'rg6', which names the controller namespace '/onrobot_<gripper>' and its 'config/<gripper>_control_params.yaml' of 'onrobot_rg_control'. -->
+  <arg name="gripper" default="rg2" />
 
   <arg name="service_name" default="/onrobot_rg/set_command" />
-  <arg name="command_topic" default="/onrobot_rg2/joint_position_controller/command" />
-  <arg name="gripper" default="rg2" />
+  <arg name="command_topic" default="/onrobot_$(arg gripper)/joint_position_controller/command" />
   <arg name="closed_joint_position" default="0.0" />
   <arg name="open_joint_position" default="0.5" />
   <arg name="step_joint_position" default="0.05" />
   <arg name="initial_joint_position" default="$(arg open_joint_position)" />
   <arg name="publish_initial_position" default="true" />
-  <rosparam file="$(find onrobot_rg_control)/config/rg2_control_params.yaml" command="load" />
 
-  <node name="onrobot_rg2_controller_spawner"
+  <!-- Load the controllers of the gripper. -->
+  <rosparam file="$(find onrobot_rg_control)/config/$(arg gripper)_control_params.yaml" command="load" />
+
+  <node name="onrobot_$(arg gripper)_controller_spawner"
     pkg="controller_manager"
     type="spawner"
     respawn="false"
     output="screen"
-    ns="/onrobot_rg2"
+    ns="/onrobot_$(arg gripper)"
     args="joint_state_controller joint_position_controller" />
 
-  <node pkg="openrosde_ur5e_teleop"
-    type="ur5e_onrobot_rg_control_spacenav_node.py"
-    name="ur5e_onrobot_rg_control_gazebo"
+  <!-- Serve the command service of the real gripper and turn each command into a joint position. -->
+  <node pkg="openrosde_onrobot_launch"
+    type="onrobot_rg_command_bridge.py"
+    name="onrobot_rg_command_bridge"
     output="screen">
     <param name="enable_joy_control" value="false" />
     <param name="enable_service_bridge" value="true" />
-    <param name="service_name" value="$(arg service_name)" />
+    <param name="gripper_service_name" value="$(arg service_name)" />
     <param name="command_topic" value="$(arg command_topic)" />
     <param name="gripper" value="$(arg gripper)" />
     <param name="closed_joint_position" value="$(arg closed_joint_position)" />

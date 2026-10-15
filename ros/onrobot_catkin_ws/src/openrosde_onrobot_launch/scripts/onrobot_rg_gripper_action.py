@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 
-"""Expose a control_msgs/GripperCommand action interface for the OnRobot RG-2 gripper.
+"""Expose a control_msgs/GripperCommand action interface for an OnRobot RG gripper.
 
-This node lets a GripperCommand action client, for example the Coarobo Sightline OpenXR
-application, open and close the OnRobot RG-2. The commanded gripper position is translated
-into an open or close command and forwarded to the OnRobot RG service.
+This node lets any GripperCommand action client, such as a teleoperation application, open and
+close an OnRobot RG2 or RG6. The commanded gripper position is translated into an open or close
+command and forwarded to the OnRobot RG service of onrobot_rg_control.
 
 The node does not implement a full actionlib server. It subscribes to the action goal topic
-and publishes on the action result and status topics, which is what the Coarobo Sightline
-ActionClient wrapper consumes.
+and publishes on the action result and status topics, which is what a simple action client
+that sends one goal at a time consumes.
 """
 
 import rospy
@@ -17,7 +17,7 @@ from control_msgs.msg import GripperCommandActionGoal, GripperCommandActionResul
 from onrobot_rg_control.srv import SetCommand
 
 
-class Ur5eOnrobotRgControlGripperAction(object):
+class OnrobotRgGripperAction(object):
     def __init__(self):
         self.action_name = rospy.get_param("~action_name", "/gripper_controller/gripper_action")
         self.gripper_service_name = rospy.get_param("~gripper_service_name", "/onrobot_rg/set_command")
@@ -39,7 +39,7 @@ class Ur5eOnrobotRgControlGripperAction(object):
         )
 
         rospy.loginfo(
-            "ur5e_onrobot_rg_control_gripper_action ready. Action: %s -> service: %s.",
+            "onrobot_rg_gripper_action ready. Action: %s -> service: %s.",
             self.action_name, self.gripper_service_name,
         )
 
@@ -74,8 +74,8 @@ class Ur5eOnrobotRgControlGripperAction(object):
 
 
 def main():
-    rospy.init_node("ur5e_onrobot_rg_control_gripper_action")
-    Ur5eOnrobotRgControlGripperAction()
+    rospy.init_node("onrobot_rg_gripper_action")
+    OnrobotRgGripperAction()
     rospy.spin()
 
 

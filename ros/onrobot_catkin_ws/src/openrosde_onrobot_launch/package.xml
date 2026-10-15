@@ -1,0 +1,26 @@
+<package format="2">
+  <name>openrosde_onrobot_launch</name>
+  <version>1.0.0</version>
+  <description>
+    The 'openrosde_onrobot_launch' package provides launch files and nodes for the OnRobot RG grippers in OpenRoSDE: the driver of the real gripper, its simulation in Gazebo, a GripperCommand action, the joint states of the fingers, and a joystick button.
+  </description>
+  <maintainer email="lotfi@coarobo.com">Lotfi El Hafi</maintainer>
+  <author email="lotfi@coarobo.com">Lotfi El Hafi</author>
+
+  <license>Apache-2.0</license>
+
+  <url type="repository">https://gitlab.com/coarobo/openrosde/openrosde-device-onrobot</url>
+  <url type="bugtracker">https://gitlab.com/coarobo/openrosde/openrosde-device-onrobot/-/issues</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <exec_depend>actionlib_msgs</exec_depend>
+  <exec_depend>control_msgs</exec_depend>
+  <exec_depend>controller_manager</exec_depend>
+  <exec_depend>effort_controllers</exec_depend>
+  <exec_depend>joint_state_controller</exec_depend>
+  <exec_depend>onrobot_rg_control</exec_depend>
+  <exec_depend>rospy</exec_depend>
+  <exec_depend>sensor_msgs</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+</package>
