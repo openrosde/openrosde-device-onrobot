@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:macro name="onrobot_qc_r_v3" params="parent *origin">
+
+  <link name="qc_robot_mount"/>
+
+  <joint name="qc_robot_mount_joint" type="fixed">
+    <xacro:insert_block name="origin" />
+    <parent link="${parent}"/>
+    <child link="qc_robot_mount"/>
+  </joint>
+
+  <link name="qc_body">
+    <visual>
+      <geometry>
+        <mesh filename="package://openrosde_ur5e_launch/description/onrobot_quick_changer_qc-r_v3/meshes/visual/onrobot_quick_changer_qc-r_v3.stl"/>
+      </geometry>
+      <material name="qc_blue">
+        <color rgba="0 0.35 0.8 1"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://openrosde_ur5e_launch/description/onrobot_quick_changer_qc-r_v3/meshes/collision/onrobot_quick_changer_qc-r_v3.stl"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.13"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="4.296185833333333e-05" iyy="4.296185833333333e-05" izz="8.191625e-05" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+
+  <joint name="qc_robot_joint" type="fixed">
+    <parent link="qc_robot_mount"/>
+    <child link="qc_body"/>
+    <origin xyz="0 0 0"/>
+  </joint>
+
+  <link name="qc_tool_mount"/>
+
+  <joint name="qc_tool_joint" type="fixed">
+    <parent link="qc_body"/>
+    <child link="qc_tool_mount"/>
+    <origin xyz="0 0 0.0136"/>
+  </joint>
+
+  <!-- Gazebo -->
+  <gazebo reference="qc_body">
+    <mu1>0.8</mu1>
+    <mu2>0.8</mu2>
+    <kp>1000000.0</kp>
+    <kd>1.0</kd>
+  </gazebo>
+
+</xacro:macro>
+
+</robot>

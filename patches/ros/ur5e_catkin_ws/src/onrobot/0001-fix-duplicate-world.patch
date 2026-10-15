@@ -1,0 +1,19 @@
+diff --git a/onrobot_rg_description/urdf/onrobot_rg2.xacro b/onrobot_rg_description/urdf/onrobot_rg2.xacro
+index e91eb29..e58e59e 100755
+--- a/onrobot_rg_description/urdf/onrobot_rg2.xacro
++++ b/onrobot_rg_description/urdf/onrobot_rg2.xacro
+@@ -24,12 +24,12 @@
+       </collision>
+     </link>
+ 
+-    <link name="world"/>
++    <!-- <link name="world"/>
+     <joint name="joint0" type="fixed">
+         <parent link="world"/>
+         <child link="${prefix}onrobot_rg2_base_link"/>
+         <origin xyz= "0. 0. 0." rpy="0. 0. 0." />
+-    </joint>
++    </joint> -->
+     <gazebo reference="${prefix}onrobot_rg2_base_link">
+       <mu1>1.0</mu1>
+       <mu2>1.0</mu2>
