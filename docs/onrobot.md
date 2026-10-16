@@ -2,8 +2,6 @@
 
 Documentation of the OnRobot device of OpenRoSDE, which packages the [`onrobot`](https://github.com/UOsaka-Harada-Laboratory/onrobot) driver of the Harada Laboratory of Osaka University for the OnRobot RG grippers, with the description of the OnRobot Quick Changer.
 
-[[_TOC_]]
-
 ## 🔗 External Resources
 
 - OnRobot RG2: [https://onrobot.com/products/rg2](https://onrobot.com/products/rg2)
