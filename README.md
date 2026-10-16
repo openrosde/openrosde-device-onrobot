@@ -1,12 +1,12 @@
 # OpenRoSDE OnRobot Device
 
-`openrosde-device-onrobot` is the device extension of [OpenRoSDE](https://gitlab.com/coarobo/SDE) for the OnRobot RG grippers, which packages the [`onrobot`](https://github.com/UOsaka-Harada-Laboratory/onrobot) driver of the Harada Laboratory of Osaka University, with the description of the OnRobot Quick Changer, a `control_msgs/GripperCommand` action, and the joint states of the fingers.
+`openrosde-device-onrobot` is the device extension of [OpenRoSDE](https://github.com/openrosde/openrosde) for the OnRobot RG grippers, which packages the [`onrobot`](https://github.com/UOsaka-Harada-Laboratory/onrobot) driver of the Harada Laboratory of Osaka University, with the description of the OnRobot Quick Changer, a `control_msgs/GripperCommand` action, and the joint states of the fingers.
 It names no robot, so any platform or setup of OpenRoSDE that carries an OnRobot gripper activates it.
 
-[![Pipeline](https://img.shields.io/gitlab/pipeline-status/coarobo%2Fopenrosde%2Fopenrosde-device-onrobot?branch=main&logo=gitlab&label=Pipeline)](https://gitlab.com/coarobo/openrosde/openrosde-device-onrobot/-/pipelines)
+[![Test with OpenRoSDE](https://github.com/openrosde/openrosde-device-onrobot/actions/workflows/test-with-openrosde.yml/badge.svg?branch=main)](https://github.com/openrosde/openrosde-device-onrobot/actions/workflows/test-with-openrosde.yml)
 [![ROS Noetic](https://img.shields.io/badge/ROS_Noetic-Framework-blue?logo=ros&logoColor=white)](http://wiki.ros.org/noetic)
 [![Docker](https://img.shields.io/badge/Docker-Layer-blue?logo=docker&logoColor=white)](https://www.docker.com/)
-[![OpenRoSDE](https://img.shields.io/badge/OpenRoSDE-Device-blue)](https://gitlab.com/coarobo/SDE)
+[![OpenRoSDE](https://img.shields.io/badge/OpenRoSDE-Device-blue)](https://github.com/openrosde/openrosde)
 
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-green)](LICENSE)
 
@@ -26,7 +26,7 @@ It names no robot, so any platform or setup of OpenRoSDE that carries an OnRobot
 1. Clone the device into `extensions/` of OpenRoSDE, then fetch its submodules and apply its patch:
 
     ```shell
-    git clone https://gitlab.com/coarobo/openrosde/openrosde-device-onrobot.git extensions/openrosde-device-onrobot
+    git clone https://github.com/openrosde/openrosde-device-onrobot.git extensions/openrosde-device-onrobot
     bash ./scripts/update-git-submodules.bash
     ```
 
@@ -51,7 +51,7 @@ It names no robot, so any platform or setup of OpenRoSDE that carries an OnRobot
     roslaunch openrosde_onrobot_launch onrobot_rg_control_default_realworld.launch
     ```
 
-A setup usually activates the device in its template and starts its launch files from its own panes, as [`docs/extensions.md`](https://gitlab.com/coarobo/SDE/-/blob/dev/docs/extensions.md) of OpenRoSDE describes.
+A setup usually activates the device in its template and starts its launch files from its own panes, as [`docs/extensions.md`](https://github.com/openrosde/openrosde/blob/dev/docs/extensions.md) of OpenRoSDE describes.
 
 ## 📁 Directory Structure
 
@@ -84,18 +84,18 @@ That check resolves every launch file with `roslaunch --files` and `--dump-param
 
 ## 🔗 External Resources
 
-- OpenRoSDE: [https://gitlab.com/coarobo/SDE](https://gitlab.com/coarobo/SDE)
+- OpenRoSDE: [https://github.com/openrosde/openrosde](https://github.com/openrosde/openrosde)
 - Coarobo GK: [https://coarobo.com/](https://coarobo.com/)
 
 ## 🐛 Reporting Issues
 
-Please report any issue using the GitLab issue tracker: [https://gitlab.com/coarobo/openrosde/openrosde-device-onrobot/-/issues](https://gitlab.com/coarobo/openrosde/openrosde-device-onrobot/-/issues).
+Please report any issue using the GitHub issue tracker: [https://github.com/openrosde/openrosde-device-onrobot/issues](https://github.com/openrosde/openrosde-device-onrobot/issues).
 
 ## 🤝 Contributing
 
 - This repository uses explicit commit messages following the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification.
 - This project follows [Semantic Versioning](https://semver.org/) for releases.
-- This project follows the conventions of OpenRoSDE, which its [`AGENTS.md`](https://gitlab.com/coarobo/SDE/-/blob/dev/AGENTS.md) describes.
+- This project follows the conventions of OpenRoSDE, which its [`AGENTS.md`](https://github.com/openrosde/openrosde/blob/dev/AGENTS.md) describes.
 
 ## 👥 Authors & Acknowledgment
 

@@ -1,0 +1,25 @@
+# Tests this device with the core of OpenRoSDE, 'openrosde/openrosde', through its reusable workflow 'extension.yml'.
+# The core checks out this commit in place of the version that it pins, adds this device to every setup that it tests, and publishes nothing.
+# https://github.com/openrosde/openrosde/blob/dev/docs/extensions.md
+
+name: Test with OpenRoSDE
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: test-with-openrosde-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  openrosde:
+    uses: openrosde/openrosde/.github/workflows/extension.yml@dev
+    with:
+      core-ref: dev
+      extra-extensions: openrosde-device-onrobot
