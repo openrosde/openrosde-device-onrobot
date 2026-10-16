@@ -1,5 +1,5 @@
 # Tests this device with the core of OpenRoSDE, 'openrosde/openrosde', through its reusable workflow 'extension.yml'.
-# The core checks out this commit in place of the version that it pins, adds this device to every setup that it tests, and publishes nothing.
+# The core checks out this commit in place of the version that it pins, adds this device to the setup of the UR5e, and publishes nothing.
 # https://github.com/openrosde/openrosde/blob/dev/docs/extensions.md
 
 name: Test with OpenRoSDE
@@ -9,6 +9,8 @@ on:
     branches:
       - main
   pull_request:
+  # Lets a maintainer test the default branch again by hand, such as after a new version of the core.
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -23,3 +25,5 @@ jobs:
     with:
       core-ref: dev
       extra-extensions: openrosde-device-onrobot
+      # The setup of the UR5e alone, as the GitLab pipeline tested this device, since a device of ROS 1 cannot build on a setup of ROS 2.
+      setups: ur5e
