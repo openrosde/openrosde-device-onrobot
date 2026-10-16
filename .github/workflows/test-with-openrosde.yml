@@ -9,6 +9,8 @@ on:
     branches:
       - main
   pull_request:
+  # Lets a maintainer test the default branch again by hand, such as after a new version of the core.
+  workflow_dispatch:
 
 permissions:
   contents: read
